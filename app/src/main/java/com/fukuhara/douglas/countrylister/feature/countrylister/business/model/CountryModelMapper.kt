@@ -1,4 +1,4 @@
-package com.fukuhara.douglas.countrylister.feature.countrylister.business
+package com.fukuhara.douglas.countrylister.feature.countrylister.business.model
 
 import com.fukuhara.douglas.common.debug.Logger
 import com.fukuhara.douglas.common.model.ModelMapper
@@ -14,26 +14,26 @@ import com.fukuhara.douglas.common.model.ModelMapper
  */
 
 class CountryModelMapper(private val logger: Logger) : ModelMapper<CountriesVo, List<CountryModel>> {
-    override fun transform(voListData: CountriesVo): List<CountryModel> {
-        return voListData
-            .filter { voData -> allRequiredDataIsPresent(voData) }
-            .map { voData ->
+    override fun transform(voData: CountriesVo): List<CountryModel> {
+        return voData
+            .filter { data -> allRequiredDataIsPresent(data) }
+            .map { data ->
                 CountryModel(
-                    capital = voData.capital!!,
-                    code = voData.code!!,
+                    capital = data.capital!!,
+                    code = data.code!!,
                     currency = CurrencyModel(
-                        code = voData.currency?.code,
-                        name = voData.currency?.name,
-                        symbol = voData.currency?.symbol),
-                    demonym = voData.demonym,
-                    flag = voData.flag,
+                        code = data.currency?.code,
+                        name = data.currency?.name,
+                        symbol = data.currency?.symbol),
+                    demonym = data.demonym,
+                    flag = data.flag,
                     language = LanguageModel(
-                        code = voData.language?.code,
-                        name = voData.language?.name,
-                        iso6392 = voData.language?.iso6392,
-                        nativeName = voData.language?.nativeName),
-                    name = voData.name!!,
-                    region = voData.region!!
+                        code = data.language?.code,
+                        name = data.language?.name,
+                        iso6392 = data.language?.iso6392,
+                        nativeName = data.language?.nativeName),
+                    name = data.name!!,
+                    region = data.region!!
                 )
         }
     }

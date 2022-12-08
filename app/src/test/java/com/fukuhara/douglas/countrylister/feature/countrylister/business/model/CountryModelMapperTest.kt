@@ -1,4 +1,4 @@
-package com.fukuhara.douglas.countrylister.feature.countrylister.business
+package com.fukuhara.douglas.countrylister.feature.countrylister.business.model
 
 import com.fukuhara.douglas.common.debug.AppLogger
 import com.fukuhara.douglas.common.model.ModelMapper

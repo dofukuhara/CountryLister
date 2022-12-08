@@ -4,12 +4,13 @@ ext {
     minSdkVersion = 21
 
     // General libraries version
+    retrofit_version = "2.9.0"
     gson_version = "2.10"
 
     // Main module specific libraries version
+    coroutines_version = "1.6.4"
     fragment_ktx_version = "1.5.5"
 
     // Network Module specific libraries version
-    retrofit_version = "2.9.0"
     okhttp3_logging_version = "5.0.0-alpha.10"
 }

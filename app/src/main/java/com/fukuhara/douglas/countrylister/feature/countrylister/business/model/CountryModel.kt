@@ -1,4 +1,4 @@
-package com.fukuhara.douglas.countrylister.feature.countrylister.business
+package com.fukuhara.douglas.countrylister.feature.countrylister.business.model
 
 /*
     VO (Value Object) pojo will only be used to get the value from the Network...

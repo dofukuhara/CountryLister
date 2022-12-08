@@ -1,4 +1,4 @@
-package com.fukuhara.douglas.countrylister.feature.countrylister.business
+package com.fukuhara.douglas.countrylister.feature.countrylister.business.model
 
 import com.google.gson.annotations.SerializedName
 
