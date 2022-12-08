@@ -15,6 +15,7 @@ data class CountryModel(
     val capital: String,
     val code: String,
     val currency: CurrencyModel,
+    val demonym: String?,
     val flag: String,
     val language: LanguageModel,
     val name: String,
@@ -28,6 +29,8 @@ data class CurrencyModel(
 )
 
 data class LanguageModel(
-    val code: String,
-    val name: String
+    val code: String?,
+    val name: String,
+    val iso6392: String?,
+    val nativeName: String?
 )

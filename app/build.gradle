@@ -37,6 +37,7 @@ dependencies {
     implementation project(":common")
     implementation project(":designsystem")
     implementation project(":network")
+    testImplementation project(":testutils")
 
     implementation "androidx.fragment:fragment-ktx:$fragment_ktx_version"
 
