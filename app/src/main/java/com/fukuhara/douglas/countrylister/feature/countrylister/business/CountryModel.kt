@@ -14,23 +14,23 @@ package com.fukuhara.douglas.countrylister.feature.countrylister.business
 data class CountryModel(
     val capital: String,
     val code: String,
-    val currency: CurrencyModel,
+    val currency: CurrencyModel?,
     val demonym: String?,
-    val flag: String,
-    val language: LanguageModel,
+    val flag: String?,
+    val language: LanguageModel?,
     val name: String,
     val region: String
 )
 
 data class CurrencyModel(
-    val code: String,
-    val name: String,
+    val code: String?,
+    val name: String?,
     val symbol: String?
 )
 
 data class LanguageModel(
     val code: String?,
-    val name: String,
+    val name: String?,
     val iso6392: String?,
     val nativeName: String?
 )

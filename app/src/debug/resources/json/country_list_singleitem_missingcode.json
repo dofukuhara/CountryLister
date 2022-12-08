@@ -1,0 +1,20 @@
+[
+  {
+    "capital": "Kabul",
+    "currency": {
+      "code": "AFN",
+      "name": "Afghan afghani",
+      "symbol": "؋"
+    },
+    "demonym": "Caymanian",
+    "flag": "https://restcountries.eu/data/afg.svg",
+    "language": {
+      "code": "ps",
+      "name": "Pashto",
+      "iso639_2": "eng",
+      "nativeName": "English"
+    },
+    "name": "Afghanistan",
+    "region": "AS"
+  }
+]

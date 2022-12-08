@@ -16,25 +16,25 @@ import com.google.gson.annotations.SerializedName
 class CountriesVo : ArrayList<CountryVo>()
 
 data class CountryVo(
-    @SerializedName("capital") val capital: String,
-    @SerializedName("code") val code: String,
-    @SerializedName("currency") val currency: CurrencyVo,
+    @SerializedName("capital") val capital: String?,
+    @SerializedName("code") val code: String?,
+    @SerializedName("currency") val currency: CurrencyVo?,
     @SerializedName("demonym") val demonym: String?,
-    @SerializedName("flag") val flag: String,
-    @SerializedName("language") val language: LanguageVo,
-    @SerializedName("name") val name: String,
-    @SerializedName("region") val region: String
+    @SerializedName("flag") val flag: String?,
+    @SerializedName("language") val language: LanguageVo?,
+    @SerializedName("name") val name: String?,
+    @SerializedName("region") val region: String?
 )
 
 data class CurrencyVo(
-    @SerializedName("code") val code: String,
-    @SerializedName("name") val name: String,
+    @SerializedName("code") val code: String?,
+    @SerializedName("name") val name: String?,
     @SerializedName("symbol") val symbol: String?
 )
 
 data class LanguageVo(
     @SerializedName("code") val code: String?,
-    @SerializedName("name") val name: String,
+    @SerializedName("name") val name: String?,
     @SerializedName("iso639_2") val iso6392: String?,
     @SerializedName("nativeName") val nativeName: String?
 )
