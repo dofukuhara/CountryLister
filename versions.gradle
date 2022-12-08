@@ -2,4 +2,8 @@ ext {
     compileSdkVersion = 32
     targetSdkVersion = 32
     minSdkVersion = 21
+
+    // Network Module specific libraries version
+    retrofit_version = "2.9.0"
+    okhttp3_logging_version = "5.0.0-alpha.10"
 }
