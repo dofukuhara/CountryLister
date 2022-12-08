@@ -16,3 +16,4 @@ rootProject.name = "Country Lister"
 include ':app'
 include ':network'
 include ':designsystem'
+include ':common'

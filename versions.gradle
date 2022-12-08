@@ -3,6 +3,10 @@ ext {
     targetSdkVersion = 32
     minSdkVersion = 21
 
+    // Main module specific libraries version
+    fragment_ktx_version = "1.5.5"
+    gson_version = "2.10"
+
     // Network Module specific libraries version
     retrofit_version = "2.9.0"
     okhttp3_logging_version = "5.0.0-alpha.10"

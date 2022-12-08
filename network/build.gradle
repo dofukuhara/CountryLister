@@ -15,6 +15,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+        // As we don't have any other testing environment, the BASE URL is being created into defaultConfig scope.
+        // It could be either created in the buildTypes from a specif build flavor, via R.strings resource or injected via Dependency Injection
         buildConfigField "String", "BASE_URL", "\"https://gist.githubusercontent.com/peymano-wmt/32dcb892b06648910ddd40406e37fdab/raw/db25946fd77c5873b0303b858e861ce724e0dcd0/\""
     }
 
