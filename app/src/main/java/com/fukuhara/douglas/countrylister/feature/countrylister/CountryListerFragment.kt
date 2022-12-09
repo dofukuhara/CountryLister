@@ -41,10 +41,12 @@ class CountryListerFragment : Fragment(R.layout.country_lister_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // As there is no versioning or timestamp of the result data, we will perform a reload of
-        // this data whenever the screen is reloaded.
-        // Depending on the use case, we could "cache" this data to prevent multiple network calls.
-        viewModel.getData()
+        // We will perform a network fetch for this data when the screen is first loaded, preserving
+        // its state when after rotating the device (retaining the dataset and the RecyclerView positioning).
+        // Also, depending on the use case, we could cache or persist this data to prevent multiple network calls.
+        if (savedInstanceState == null) {
+            viewModel.getData()
+        }
         setupViewModelObservers()
         setupTryAgainCtaBehaviour() // We will allow the user to refresh (make a new network call) only in case the previous one failed.
     }
