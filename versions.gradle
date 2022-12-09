@@ -10,6 +10,7 @@ ext {
     // Main module specific libraries version
     coroutines_version = "1.6.4"
     fragment_ktx_version = "1.5.5"
+    core_testing_version = "2.1.0"
 
     // Network Module specific libraries version
     okhttp3_logging_version = "5.0.0-alpha.10"

@@ -22,21 +22,29 @@ class CountryModelMapperTest {
 
     @Test
     fun `given a json with empty data, When mapping VO into Model, Then Model must be empty too`() {
+        // Given
         val countriesVoRef = Parser.jsonToObject(
             this as Any, "json/country_list_empty.json", CountriesVo::class.java
         )
+
+        // When
         val countriesModel = countryModelMapper.transform(countriesVoRef)
 
+        // Then
         assertThat("The length of Model must be the same as from VO", countriesModel.size, `is`(0))
     }
 
     @Test
     fun `given a json with a single full country data, When mapping VO into Model, Then VO and Model must hold the same content`() {
+        // Given
         val countriesVoRef = Parser.jsonToObject(
             this as Any, "json/country_list_singleitem_fullelement.json", CountriesVo::class.java
         )
+
+        // When
         val countriesModel = countryModelMapper.transform(countriesVoRef)
 
+        // Then
         assertThat("The length of Model must be the same as from VO", countriesModel.size, `is`(1))
         assertThat("CAPITAL value from Model should the same as from VO", countriesModel.firstOrNull()?.capital, `is`("Kabul"))
         assertThat("CODE value from Model should the same as from VO", countriesModel.firstOrNull()?.code, `is`("AF"))
@@ -55,21 +63,29 @@ class CountryModelMapperTest {
 
     @Test
     fun `given a json with five data, When mapping VO into Model, Then Model must have the same amount of elements`() {
+        // Given
         val countriesVoRef = Parser.jsonToObject(
             this as Any, "json/country_list_fiveitems.json", CountriesVo::class.java
         )
+
+        // When
         val countriesModel = countryModelMapper.transform(countriesVoRef)
 
+        // Then
         assertThat("The length of Model must be the same as from VO", countriesModel.size, `is`(5))
     }
 
     @Test
     fun `given a json with five data, When mapping VO into Model, Then items in Model must be in same order as in VO`() {
+        // Given
         val countriesVoRef = Parser.jsonToObject(
             this as Any, "json/country_list_fiveitems.json", CountriesVo::class.java
         )
+
+        // When
         val countriesModel = countryModelMapper.transform(countriesVoRef)
 
+        // Then
         assertThat("CAPITAL value from Model should the same as from VO", countriesModel[0].capital, `is`("Kabul"))
         assertThat("CAPITAL value from Model should the same as from VO", countriesModel[1].capital, `is`("Mariehamn"))
         assertThat("CAPITAL value from Model should the same as from VO", countriesModel[2].capital, `is`("Tirana"))
@@ -79,51 +95,71 @@ class CountryModelMapperTest {
 
     @Test
     fun `given an incomplete response, When missing capital, Then dont map this Vo into Model`() {
+        // Given
         val countriesVoRef = Parser.jsonToObject(
             this as Any, "json/country_list_singleitem_missingcapital.json", CountriesVo::class.java
         )
+
+        // When
         val countriesModel = countryModelMapper.transform(countriesVoRef)
 
+        // Then
         assertThat("When missing capital, this element should not be mapped in the result Model", countriesModel.size, `is`(0))
     }
 
     @Test
     fun `given an incomplete response, When missing code, Then dont map this Vo into Model`() {
+        // Given
         val countriesVoRef = Parser.jsonToObject(
             this as Any, "json/country_list_singleitem_missingcode.json", CountriesVo::class.java
         )
+
+        // When
         val countriesModel = countryModelMapper.transform(countriesVoRef)
 
+        // Then
         assertThat("When missing code, this element should not be mapped in the result Model", countriesModel.size, `is`(0))
     }
 
     @Test
     fun `given an incomplete response, When missing name, Then dont map this Vo into Model`() {
+        // Given
         val countriesVoRef = Parser.jsonToObject(
             this as Any, "json/country_list_singleitem_missingname.json", CountriesVo::class.java
         )
+
+        // When
         val countriesModel = countryModelMapper.transform(countriesVoRef)
 
+        // Then
         assertThat("When missing name, this element should not be mapped in the result Model", countriesModel.size, `is`(0))
     }
 
     @Test
     fun `given an incomplete response, When missing region, Then dont map this Vo into Model`() {
+        // Given
         val countriesVoRef = Parser.jsonToObject(
             this as Any, "json/country_list_singleitem_missingregion.json", CountriesVo::class.java
         )
+
+        // When
         val countriesModel = countryModelMapper.transform(countriesVoRef)
 
+        // Then
         assertThat("When missing region, this element should not be mapped in the result Model", countriesModel.size, `is`(0))
     }
 
     @Test
     fun `given an incomplete response, When missing a mandatory field, Then mapper should send this log`() {
+        // Given
         val countriesVoRef = Parser.jsonToObject(
             this as Any, "json/country_list_singleitem_missingregion.json", CountriesVo::class.java
         )
-        val countriesModel = countryModelMapper.transform(countriesVoRef)
 
+        // When
+        countryModelMapper.transform(countriesVoRef)
+
+        // Then
         verify {
             logger.d("CountryModelMapper", "Required information missing: country.capital [Kabul] | country.code [AF] | country.name [Afghanistan] | country.region [null]")
         }
