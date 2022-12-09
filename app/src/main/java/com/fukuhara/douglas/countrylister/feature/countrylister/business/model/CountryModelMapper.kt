@@ -8,19 +8,19 @@ import com.fukuhara.douglas.common.model.ModelMapper
     - In VO, every field will be converted to nullable -> Avoid any potential crash
     - In Mapper, all the necessary fields in UI will be declared as non-nullable -> They need to be displayed in UI
     - An approach taken at this time, for the case when a mandatory field is not returned by BackEnd (e.g.: capital) :
-        -- During Vo to Model mapping (business layer), we will check the mandatory fields. In case that
-           one of those fields is not presented in the response, then we will not include this data into Model
-           and we will log this in logcat (we could send it to Crashlytics, Newrelic, Sentry, etc...)
+        -- During Vo to Model mapping (business layer), we will replace null by empty string
+        -- We will log this in logcat (we could send it to Crashlytics, Newrelic, Sentry, etc...), so
+           that we can analyze it in the future and communicate this with BackEnd Team
  */
 
 class CountryModelMapper(private val logger: Logger) : ModelMapper<CountriesVo, List<CountryModel>> {
     override fun transform(voData: CountriesVo): List<CountryModel> {
         return voData
-            .filter { data -> allRequiredDataIsPresent(data) }
             .map { data ->
+                logIfMandatoryDataForUiIsMissing(data)
                 CountryModel(
-                    capital = data.capital!!,
-                    code = data.code!!,
+                    capital = data.capital ?: "",
+                    code = data.code ?: "",
                     currency = CurrencyModel(
                         code = data.currency?.code,
                         name = data.currency?.name,
@@ -32,22 +32,19 @@ class CountryModelMapper(private val logger: Logger) : ModelMapper<CountriesVo, 
                         name = data.language?.name,
                         iso6392 = data.language?.iso6392,
                         nativeName = data.language?.nativeName),
-                    name = data.name!!,
-                    region = data.region!!
+                    name = data.name ?: "",
+                    region = data.region ?: ""
                 )
         }
     }
 
-    private fun allRequiredDataIsPresent(country: CountryVo) : Boolean {
-        return if (country.capital != null && country.code != null && country.name != null && country.region != null) {
-            true
-        } else {
+    private fun logIfMandatoryDataForUiIsMissing(country: CountryVo)  {
+        if (country.capital == null || country.code == null || country.name == null || country.region == null) {
             logger.d("CountryModelMapper", "Required information missing: " +
                     "country.capital [${country.capital}] | " +
                     "country.code [${country.code}] | " +
                     "country.name [${country.name}] | " +
                     "country.region [${country.region}]")
-            false
         }
     }
 }

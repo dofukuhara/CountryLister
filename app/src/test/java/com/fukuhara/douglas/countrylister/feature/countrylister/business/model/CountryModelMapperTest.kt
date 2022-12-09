@@ -94,7 +94,7 @@ class CountryModelMapperTest {
     }
 
     @Test
-    fun `given an incomplete response, When missing capital, Then dont map this Vo into Model`() {
+    fun `given that capital is missing from response, When mapping VO into Model, Then replace capital from null by empty string`() {
         // Given
         val countriesVoRef = Parser.jsonToObject(
             this as Any, "json/country_list_singleitem_missingcapital.json", CountriesVo::class.java
@@ -104,11 +104,24 @@ class CountryModelMapperTest {
         val countriesModel = countryModelMapper.transform(countriesVoRef)
 
         // Then
-        assertThat("When missing capital, this element should not be mapped in the result Model", countriesModel.size, `is`(0))
+        assertThat("The length of Model must be the same as from VO", countriesModel.size, `is`(1))
+        assertThat("As CAPITAL is missing, it should be replaced from null to Empty String", countriesModel.firstOrNull()?.capital, `is`(""))
+        assertThat("CODE value from Model should the same as from VO", countriesModel.firstOrNull()?.code, `is`("AF"))
+        assertThat("CURRENCY.CODE value from Model should the same as from VO", countriesModel.firstOrNull()?.currency?.code, `is`("AFN"))
+        assertThat("CURRENCY.NAME value from Model should the same as from VO", countriesModel.firstOrNull()?.currency?.name, `is`("Afghan afghani"))
+        assertThat("CURRENCY.SYMBOL value from Model should the same as from VO", countriesModel.firstOrNull()?.currency?.symbol, `is`("؋"))
+        assertThat("DEMONYM value from Model should the same as from VO", countriesModel.firstOrNull()?.demonym, `is`("Caymanian"))
+        assertThat("FLAG value from Model should the same as from VO", countriesModel.firstOrNull()?.flag, `is`("https://restcountries.eu/data/afg.svg"))
+        assertThat("LANGUAGE.CODE value from Model should the same as from VO", countriesModel.firstOrNull()?.language?.code, `is`("ps"))
+        assertThat("LANGUAGE.NAME value from Model should the same as from VO", countriesModel.firstOrNull()?.language?.name, `is`("Pashto"))
+        assertThat("LANGUAGE.ISO639_2 value from Model should the same as from VO", countriesModel.firstOrNull()?.language?.iso6392, `is`("eng"))
+        assertThat("LANGUAGE.NATIVENAME value from Model should the same as from VO", countriesModel.firstOrNull()?.language?.nativeName, `is`("English"))
+        assertThat("NAME value from Model should the same as from VO", countriesModel.firstOrNull()?.name, `is`("Afghanistan"))
+        assertThat("REGION value from Model should the same as from VO", countriesModel.firstOrNull()?.region, `is`("AS"))
     }
 
     @Test
-    fun `given an incomplete response, When missing code, Then dont map this Vo into Model`() {
+    fun `given that country code is missing from response, When mapping VO into Model, Then replace country code from null by empty string`() {
         // Given
         val countriesVoRef = Parser.jsonToObject(
             this as Any, "json/country_list_singleitem_missingcode.json", CountriesVo::class.java
@@ -118,11 +131,24 @@ class CountryModelMapperTest {
         val countriesModel = countryModelMapper.transform(countriesVoRef)
 
         // Then
-        assertThat("When missing code, this element should not be mapped in the result Model", countriesModel.size, `is`(0))
+        assertThat("The length of Model must be the same as from VO", countriesModel.size, `is`(1))
+        assertThat("CAPITAL value from Model should the same as from VO", countriesModel.firstOrNull()?.capital, `is`("Kabul"))
+        assertThat("As CODE is missing, it should be replaced from null to Empty String", countriesModel.firstOrNull()?.code, `is`(""))
+        assertThat("CURRENCY.CODE value from Model should the same as from VO", countriesModel.firstOrNull()?.currency?.code, `is`("AFN"))
+        assertThat("CURRENCY.NAME value from Model should the same as from VO", countriesModel.firstOrNull()?.currency?.name, `is`("Afghan afghani"))
+        assertThat("CURRENCY.SYMBOL value from Model should the same as from VO", countriesModel.firstOrNull()?.currency?.symbol, `is`("؋"))
+        assertThat("DEMONYM value from Model should the same as from VO", countriesModel.firstOrNull()?.demonym, `is`("Caymanian"))
+        assertThat("FLAG value from Model should the same as from VO", countriesModel.firstOrNull()?.flag, `is`("https://restcountries.eu/data/afg.svg"))
+        assertThat("LANGUAGE.CODE value from Model should the same as from VO", countriesModel.firstOrNull()?.language?.code, `is`("ps"))
+        assertThat("LANGUAGE.NAME value from Model should the same as from VO", countriesModel.firstOrNull()?.language?.name, `is`("Pashto"))
+        assertThat("LANGUAGE.ISO639_2 value from Model should the same as from VO", countriesModel.firstOrNull()?.language?.iso6392, `is`("eng"))
+        assertThat("LANGUAGE.NATIVENAME value from Model should the same as from VO", countriesModel.firstOrNull()?.language?.nativeName, `is`("English"))
+        assertThat("NAME value from Model should the same as from VO", countriesModel.firstOrNull()?.name, `is`("Afghanistan"))
+        assertThat("REGION value from Model should the same as from VO", countriesModel.firstOrNull()?.region, `is`("AS"))
     }
 
     @Test
-    fun `given an incomplete response, When missing name, Then dont map this Vo into Model`() {
+    fun `given that country name is missing from response, When mapping VO into Model, Then replace country name from null by empty string`() {
         // Given
         val countriesVoRef = Parser.jsonToObject(
             this as Any, "json/country_list_singleitem_missingname.json", CountriesVo::class.java
@@ -132,11 +158,24 @@ class CountryModelMapperTest {
         val countriesModel = countryModelMapper.transform(countriesVoRef)
 
         // Then
-        assertThat("When missing name, this element should not be mapped in the result Model", countriesModel.size, `is`(0))
+        assertThat("The length of Model must be the same as from VO", countriesModel.size, `is`(1))
+        assertThat("CAPITAL value from Model should the same as from VO", countriesModel.firstOrNull()?.capital, `is`("Kabul"))
+        assertThat("CODE value from Model should the same as from VO", countriesModel.firstOrNull()?.code, `is`("AF"))
+        assertThat("CURRENCY.CODE value from Model should the same as from VO", countriesModel.firstOrNull()?.currency?.code, `is`("AFN"))
+        assertThat("CURRENCY.NAME value from Model should the same as from VO", countriesModel.firstOrNull()?.currency?.name, `is`("Afghan afghani"))
+        assertThat("CURRENCY.SYMBOL value from Model should the same as from VO", countriesModel.firstOrNull()?.currency?.symbol, `is`("؋"))
+        assertThat("DEMONYM value from Model should the same as from VO", countriesModel.firstOrNull()?.demonym, `is`("Caymanian"))
+        assertThat("FLAG value from Model should the same as from VO", countriesModel.firstOrNull()?.flag, `is`("https://restcountries.eu/data/afg.svg"))
+        assertThat("LANGUAGE.CODE value from Model should the same as from VO", countriesModel.firstOrNull()?.language?.code, `is`("ps"))
+        assertThat("LANGUAGE.NAME value from Model should the same as from VO", countriesModel.firstOrNull()?.language?.name, `is`("Pashto"))
+        assertThat("LANGUAGE.ISO639_2 value from Model should the same as from VO", countriesModel.firstOrNull()?.language?.iso6392, `is`("eng"))
+        assertThat("LANGUAGE.NATIVENAME value from Model should the same as from VO", countriesModel.firstOrNull()?.language?.nativeName, `is`("English"))
+        assertThat("As NAME is missing, it should be replaced from null to Empty String", countriesModel.firstOrNull()?.name, `is`(""))
+        assertThat("REGION value from Model should the same as from VO", countriesModel.firstOrNull()?.region, `is`("AS"))
     }
 
     @Test
-    fun `given an incomplete response, When missing region, Then dont map this Vo into Model`() {
+    fun `given that region is missing from response, When mapping VO into Model, Then replace region from null by empty string`() {
         // Given
         val countriesVoRef = Parser.jsonToObject(
             this as Any, "json/country_list_singleitem_missingregion.json", CountriesVo::class.java
@@ -146,11 +185,24 @@ class CountryModelMapperTest {
         val countriesModel = countryModelMapper.transform(countriesVoRef)
 
         // Then
-        assertThat("When missing region, this element should not be mapped in the result Model", countriesModel.size, `is`(0))
+        assertThat("The length of Model must be the same as from VO", countriesModel.size, `is`(1))
+        assertThat("CAPITAL value from Model should the same as from VO", countriesModel.firstOrNull()?.capital, `is`("Kabul"))
+        assertThat("CODE value from Model should the same as from VO", countriesModel.firstOrNull()?.code, `is`("AF"))
+        assertThat("CURRENCY.CODE value from Model should the same as from VO", countriesModel.firstOrNull()?.currency?.code, `is`("AFN"))
+        assertThat("CURRENCY.NAME value from Model should the same as from VO", countriesModel.firstOrNull()?.currency?.name, `is`("Afghan afghani"))
+        assertThat("CURRENCY.SYMBOL value from Model should the same as from VO", countriesModel.firstOrNull()?.currency?.symbol, `is`("؋"))
+        assertThat("DEMONYM value from Model should the same as from VO", countriesModel.firstOrNull()?.demonym, `is`("Caymanian"))
+        assertThat("FLAG value from Model should the same as from VO", countriesModel.firstOrNull()?.flag, `is`("https://restcountries.eu/data/afg.svg"))
+        assertThat("LANGUAGE.CODE value from Model should the same as from VO", countriesModel.firstOrNull()?.language?.code, `is`("ps"))
+        assertThat("LANGUAGE.NAME value from Model should the same as from VO", countriesModel.firstOrNull()?.language?.name, `is`("Pashto"))
+        assertThat("LANGUAGE.ISO639_2 value from Model should the same as from VO", countriesModel.firstOrNull()?.language?.iso6392, `is`("eng"))
+        assertThat("LANGUAGE.NATIVENAME value from Model should the same as from VO", countriesModel.firstOrNull()?.language?.nativeName, `is`("English"))
+        assertThat("NAME value from Model should the same as from VO", countriesModel.firstOrNull()?.name, `is`("Afghanistan"))
+        assertThat("As REGION is missing, it should be replaced from null to Empty String", countriesModel.firstOrNull()?.region, `is`(""))
     }
 
     @Test
-    fun `given an incomplete response, When missing a mandatory field, Then mapper should send this log`() {
+    fun `given that the response does not contain at least one of the mandatory items, When mapping VO into Model, Then mapper should log this entry`() {
         // Given
         val countriesVoRef = Parser.jsonToObject(
             this as Any, "json/country_list_singleitem_missingregion.json", CountriesVo::class.java
