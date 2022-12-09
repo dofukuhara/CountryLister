@@ -20,10 +20,11 @@ class CountryListerFragment : Fragment(R.layout.country_lister_fragment) {
 
     private var _binding: CountryListerFragmentBinding? = null
     private val binding get() = _binding!!
+    private val logger = AppLogger()
 
     private val viewModel : CountryListViewModel by viewModels {
         CountryListViewModelFactory(
-            repository = CountryRemoteRepository(api = RetrofitClient.getApi(CountryRemoteApi::class.java), mapper = CountryModelMapper(AppLogger())),
+            repository = CountryRemoteRepository(api = RetrofitClient.getApi(CountryRemoteApi::class.java), mapper = CountryModelMapper(logger)),
             backgroundDispatcher = Dispatchers.IO)
     }
 
@@ -45,6 +46,7 @@ class CountryListerFragment : Fragment(R.layout.country_lister_fragment) {
         // Depending on the use case, we could "cache" this data to prevent multiple network calls.
         viewModel.getData()
         setupViewModelObservers()
+        setupTryAgainCtaBehaviour() // We will allow the user to refresh (make a new network call) only in case the previous one failed.
     }
 
     private fun setupViewModelObservers() {
@@ -56,7 +58,13 @@ class CountryListerFragment : Fragment(R.layout.country_lister_fragment) {
     private fun handleLoadingState() {
         viewModel.loadingState.observe(viewLifecycleOwner) { isLoading ->
             when (isLoading) {
-                true -> binding.countryListerPb.show()
+                true -> {
+                    // No other view than ProgressBar should be visible at this point...
+                    binding.countryListerRv.visibility = View.INVISIBLE
+                    binding.countryListerErrorViewGroup.visibility = View.GONE
+
+                    binding.countryListerPb.show()
+                }
                 false -> binding.countryListerPb.hide()
             }
         }
@@ -65,8 +73,8 @@ class CountryListerFragment : Fragment(R.layout.country_lister_fragment) {
     private fun handleErrorState() {
         viewModel.isErrorState.observe(viewLifecycleOwner) { isErrorState ->
             when (isErrorState) {
-                true -> Unit // Handle Error case
-                false -> Unit // Dismiss any error view or message from this fragment
+                true -> binding.countryListerErrorViewGroup.visibility = View.VISIBLE
+                false -> binding.countryListerErrorViewGroup.visibility = View.GONE
             }
         }
     }
@@ -75,6 +83,14 @@ class CountryListerFragment : Fragment(R.layout.country_lister_fragment) {
         viewModel.countryListModel.observe(viewLifecycleOwner) { countryListData ->
             val adapter = CountryListAdapter(countryListData)
             binding.countryListerRv.adapter = adapter
+
+            binding.countryListerRv.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setupTryAgainCtaBehaviour() {
+        binding.countryListerTryAgainCta.setOnClickListener {
+            viewModel.getData()
         }
     }
 }

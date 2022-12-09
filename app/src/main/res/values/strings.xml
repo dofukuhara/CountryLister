@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Country Lister</string>
 
+    <!--  Country Lister Screen string values  -->
+    <string name="country_lister_error_message">Something went wrong :(\nPlease try again later.</string>
+    <string name="country_lister_try_again_cta">TRY AGAIN</string>
+
     <!--  Country Card string values  -->
     <string name="country_card_country_template">%1$s, %2$s</string>
+    <string name="country_card_country_empty_value">-</string>
 </resources>

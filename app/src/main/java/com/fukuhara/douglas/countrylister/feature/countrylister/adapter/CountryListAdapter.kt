@@ -23,9 +23,20 @@ class CountryListAdapter(private val dataset: List<CountryModel>) : RecyclerView
 
     class CountryListViewHolder(private val binding: DsCountryCardBinding) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(country: CountryModel) {
-            binding.dsCountryCardCode.text = country.code
-            binding.dsCountryCardCapital.text = country.capital
-            binding.dsCountryCardCountry.text = binding.root.resources.getString(R.string.country_card_country_template, country.name, country.region)
+            /*
+                In case that any of the fields used are empty, we are replacing it by "-" (defaultString),
+                just to not leave some huge white-spacing in the card.
+                It is also possible to log those occurrences to check with BackEnd Team, if needed.
+             */
+            val defaultString = binding.root.resources.getString(R.string.country_card_country_empty_value)
+            val countryCode = country.code.ifEmpty { defaultString }
+            val countryCapital = country.capital.ifEmpty { defaultString }
+            val countryName = country.name.ifEmpty { defaultString }
+            val countryRegion = country.region.ifEmpty { defaultString }
+
+            binding.dsCountryCardCode.text = countryCode
+            binding.dsCountryCardCapital.text = countryCapital
+            binding.dsCountryCardCountry.text = binding.root.resources.getString(R.string.country_card_country_template, countryName, countryRegion)
         }
     }
 }

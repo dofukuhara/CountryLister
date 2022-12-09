@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--  Common dimens values  -->
+    <dimen name="ds_dimen_default_item_margin_space">16dp</dimen>
+
     <!--  Country Card dimens values  -->
     <dimen name="ds_dimen_country_card_corner_radius">10dp</dimen>
     <dimen name="ds_dimen_country_card_content_padding">4dp</dimen>
