@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  Country Card dimens values  -->
+    <dimen name="ds_dimen_country_card_corner_radius">10dp</dimen>
+    <dimen name="ds_dimen_country_card_content_padding">4dp</dimen>
+    <dimen name="ds_dimen_country_card_layout_margin">4dp</dimen>
+    <dimen name="ds_dimen_country_card_value_vertical_margin">16dp</dimen>
+    <dimen name="ds_dimen_country_card_value_horizontal_margin">8dp</dimen>
+</resources>

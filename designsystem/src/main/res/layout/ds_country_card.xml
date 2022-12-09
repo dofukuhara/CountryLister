@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/ds_dimen_country_card_corner_radius"
+    app:contentPadding="@dimen/ds_dimen_country_card_content_padding"
+    android:layout_margin="@dimen/ds_dimen_country_card_layout_margin"
+    style="@style/CardView.Light">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/ds_country_card_country"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ds_country_card_code"
+            android:layout_marginTop="@dimen/ds_dimen_country_card_value_vertical_margin"
+            android:layout_marginHorizontal="@dimen/ds_dimen_country_card_value_horizontal_margin"
+            android:gravity="start"
+            tools:text="United States of America, NA" />
+
+        <TextView
+            android:id="@+id/ds_country_card_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ds_country_card_country"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/ds_dimen_country_card_value_vertical_margin"
+            android:layout_marginHorizontal="@dimen/ds_dimen_country_card_value_horizontal_margin"
+            android:gravity="end"
+            tools:text="US" />
+
+        <TextView
+            android:id="@+id/ds_country_card_capital"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/ds_country_card_country"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginHorizontal="@dimen/ds_dimen_country_card_value_horizontal_margin"
+            android:layout_marginVertical="@dimen/ds_dimen_country_card_value_vertical_margin"
+            android:gravity="start"
+            tools:text="Washington, D.C." />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

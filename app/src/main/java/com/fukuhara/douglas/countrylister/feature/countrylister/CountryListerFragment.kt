@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import com.fukuhara.douglas.common.debug.AppLogger
 import com.fukuhara.douglas.countrylister.R
 import com.fukuhara.douglas.countrylister.databinding.CountryListerFragmentBinding
+import com.fukuhara.douglas.countrylister.feature.countrylister.adapter.CountryListAdapter
 import com.fukuhara.douglas.countrylister.feature.countrylister.business.model.CountryModelMapper
 import com.fukuhara.douglas.countrylister.feature.countrylister.business.repository.CountryRemoteApi
 import com.fukuhara.douglas.countrylister.feature.countrylister.business.repository.CountryRemoteRepository
@@ -72,7 +73,8 @@ class CountryListerFragment : Fragment(R.layout.country_lister_fragment) {
 
     private fun handleCountryListData() {
         viewModel.countryListModel.observe(viewLifecycleOwner) { countryListData ->
-            // Display the Country List in this fragment
+            val adapter = CountryListAdapter(countryListData)
+            binding.countryListerRv.adapter = adapter
         }
     }
 }
