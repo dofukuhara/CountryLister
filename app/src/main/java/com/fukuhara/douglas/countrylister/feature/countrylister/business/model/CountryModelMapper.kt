@@ -21,17 +21,6 @@ class CountryModelMapper(private val logger: Logger) : ModelMapper<CountriesVo, 
                 CountryModel(
                     capital = data.capital ?: "",
                     code = data.code ?: "",
-                    currency = CurrencyModel(
-                        code = data.currency?.code,
-                        name = data.currency?.name,
-                        symbol = data.currency?.symbol),
-                    demonym = data.demonym,
-                    flag = data.flag,
-                    language = LanguageModel(
-                        code = data.language?.code,
-                        name = data.language?.name,
-                        iso6392 = data.language?.iso6392,
-                        nativeName = data.language?.nativeName),
                     name = data.name ?: "",
                     region = data.region ?: ""
                 )

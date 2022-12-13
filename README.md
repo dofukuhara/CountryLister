@@ -10,7 +10,7 @@
 - Pojo: receiving data from network as VO (Value Object) and converting it as a Model object to be consumed by the application
 
 ## Logic and Error Handling and Edge Cases
-* In case of an error from the network call is encoutered, **CountryListerFragment** will display an error message, as well as an option to retry the network call;
+* In case of an error from the network call is encountered, **CountryListerFragment** will display an error message, as well as an option to retry the network call;
 * In case of a success network call and the list of countries will be displayed by **CountryListerFragment** and there will be no option for end-user to perform a manual refresh;
 * In the presentation of the data to the CountryCard, in case that `country name, region, code or capital` are empty, they will be replaced by a dash ("-"), just to not leave so many white space in the card;
 * In case of a device orientation change, it will not re-trigger the network call, retaining the currently country list, as well as preserving the RecyclerView state/positioning;
